@@ -51,8 +51,10 @@ jobs:
           echo "release-name=unstable" >> $GITHUB_OUTPUT
           echo "release-sha=${{ github.sha }}" >> $GITHUB_OUTPUT
           echo "pre-release=true" >> $GITHUB_OUTPUT
+  Test:
+    uses: eval/redesigned-computing-machine/.github/workflows/test.yml@master
   Build:
-    needs: [Config]
+    needs: [Test, Config]
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
