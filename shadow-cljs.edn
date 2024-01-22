@@ -13,6 +13,18 @@
  {:ci
   {:target    :karma
    :output-to "out/ci/ci.js"}
+  :ext
+  {:target     :esm
+   :output-dir "ext/js"
+   :runtime    :browser
+   :modules
+   {:shared {:entries []}
+    :background
+    {:init-fn    testing.core/hello
+     :depends-on #{:shared}}
+    #_#_:popup
+      {:init-fn    demo.popup/init
+       :depends-on #{:shared}}}}
   :test
   {:target   :browser-test
    :test-dir "out/test"}}}
