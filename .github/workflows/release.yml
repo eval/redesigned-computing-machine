@@ -81,7 +81,7 @@ jobs:
         run: echo "${{ needs.Config.outputs.version }}" > ext/VERSION
       - name: Zip it
         run: |
-          mv ext bbg-{{ needs.Config.outputs.version }}
+          mv ext bbg-${{ needs.Config.outputs.version }}
           zip -r bangbanggo-${{ needs.Config.outputs.version }}.zip bbg-${{ needs.Config.outputs.version }}
       - name: Release stable
         if: "${{ needs.Config.outputs.stable }}"
