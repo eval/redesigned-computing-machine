@@ -7,5 +7,9 @@
  :dependencies
  []
 
+ :dev-http {8022 "out/test"}
+
  :builds
- {}}
+ {:test
+  {:target :browser-test
+   :test-dir  "out/test"}}}
