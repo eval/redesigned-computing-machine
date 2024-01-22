@@ -82,7 +82,7 @@ jobs:
       - name: Zip it
         run: |
           mv ext bbg-{{ needs.Config.outputs.version }}
-          zip -r bangbanggo-{{ needs.Config.outputs.version }}.zip bbg-{{ needs.Config.outputs.version }}
+          zip -r bangbanggo-${{ needs.Config.outputs.version }}.zip bbg-${{ needs.Config.outputs.version }}
       - name: Release stable
         if: "${{ needs.Config.outputs.stable }}"
         uses: softprops/action-gh-release@v1
