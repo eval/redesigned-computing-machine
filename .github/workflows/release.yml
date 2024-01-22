@@ -52,7 +52,7 @@ jobs:
           echo "release-sha=${{ github.sha }}" >> $GITHUB_OUTPUT
           echo "pre-release=true" >> $GITHUB_OUTPUT
   Test:
-    uses: eval/redesigned-computing-machine/.github/workflows/test.yml@master
+    uses: eval/redesigned-computing-machine/.github/workflows/test.yml@main
   Build:
     needs: [Test, Config]
     runs-on: ubuntu-latest
