@@ -29,5 +29,4 @@ jobs:
           yarn shadow-cljs compile ci
       - name: Run tests
         run: |
-          yarn shadow-cljs compile ci
           yarn karma start --single-run
