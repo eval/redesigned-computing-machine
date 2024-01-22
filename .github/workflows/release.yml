@@ -57,7 +57,7 @@ jobs:
     needs: [Test, Config]
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: 'write'
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -103,6 +103,7 @@ jobs:
           tag_name: stable
           files: |
             bangbanggo-${{ needs.Config.outputs.version }}.zip
+          token: ${{ secrets.RELEASE_GITHUB_TOKEN }}
       - name: Release unstable
         if: ${{ always() }}
         uses: softprops/action-gh-release@v1
