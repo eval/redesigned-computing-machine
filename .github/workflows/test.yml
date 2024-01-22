@@ -24,6 +24,9 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2
       - run: yarn install --frozen-lockfile
+      - name: Compile
+        run: |
+          yarn shadow-cljs compile ci
       - name: Run tests
         run: |
           yarn shadow-cljs compile ci
