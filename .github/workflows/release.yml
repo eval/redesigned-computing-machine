@@ -97,7 +97,7 @@ jobs:
           target_commitish: d8efd86f725110fab4d97044b1ad5930be1b7c9a # first commit
           tag_name: stable
           files: |
-            bangbanggo-{{ needs.Config.outputs.version }}.zip
+            bangbanggo-${{ needs.Config.outputs.version }}.zip
       - name: Release unstable
         if: ${{ always() }}
         uses: softprops/action-gh-release@v1
@@ -112,7 +112,7 @@ jobs:
           target_commitish: d8efd86f725110fab4d97044b1ad5930be1b7c9a  # first commit
           tag_name: unstable
           files: |
-            bangbanggo-{{ needs.Config.outputs.version }}.zip
+            bangbanggo-${{ needs.Config.outputs.version }}.zip
       - name: Tagged release
         if: "${{ needs.Config.outputs.tagged-release }}"
         uses: softprops/action-gh-release@v1
@@ -127,4 +127,4 @@ jobs:
           target_commitish: ${{ github.sha }}
           tag_name: ${{ needs.Config.outputs.release-name }}
           files: |
-            bangbanggo-{{ needs.Config.outputs.version }}.zip
+            bangbanggo-${{ needs.Config.outputs.version }}.zip
