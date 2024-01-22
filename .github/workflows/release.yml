@@ -103,7 +103,8 @@ jobs:
           tag_name: stable
           files: |
             bangbanggo-${{ needs.Config.outputs.version }}.zip
-          token: ${{ secrets.RELEASE_GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release unstable
         if: ${{ always() }}
         uses: softprops/action-gh-release@v1
