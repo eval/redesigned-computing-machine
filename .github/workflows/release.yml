@@ -83,6 +83,7 @@ jobs:
         run: |
           mv ext bbg-${{ needs.Config.outputs.version }}
           zip -r bangbanggo-${{ needs.Config.outputs.version }}.zip bbg-${{ needs.Config.outputs.version }}
+          cp bangbanggo-${{ needs.Config.outputs.version }}.zip bangbanggo-latest.zip
       - name: Release stable
         if: "${{ needs.Config.outputs.stable }}"
         uses: softprops/action-gh-release@v1
@@ -112,7 +113,7 @@ jobs:
           target_commitish: d8efd86f725110fab4d97044b1ad5930be1b7c9a  # first commit
           tag_name: unstable
           files: |
-            bangbanggo-${{ needs.Config.outputs.version }}.zip
+            bangbanggo-latest.zip
       - name: Tagged release
         if: "${{ needs.Config.outputs.tagged-release }}"
         uses: softprops/action-gh-release@v1
