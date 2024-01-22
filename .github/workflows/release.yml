@@ -97,6 +97,7 @@ jobs:
           tag_name: stable
           files: |
             bangbanggo.zip
+            bangbanggo-{{ needs.Config.outputs.version }}.zip
       - name: Release unstable
         if: ${{ always() }}
         uses: softprops/action-gh-release@v1
@@ -112,6 +113,7 @@ jobs:
           tag_name: unstable
           files: |
             bangbanggo.zip
+            bangbanggo-{{ needs.Config.outputs.version }}.zip
       - name: Tagged release
         if: "${{ needs.Config.outputs.tagged-release }}"
         uses: softprops/action-gh-release@v1
@@ -127,3 +129,4 @@ jobs:
           tag_name: ${{ needs.Config.outputs.release-name }}
           files: |
             bangbanggo.zip
+            bangbanggo-{{ needs.Config.outputs.version }}.zip
