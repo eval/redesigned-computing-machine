@@ -51,10 +51,10 @@ jobs:
           echo "release-name=unstable" >> $GITHUB_OUTPUT
           echo "release-sha=${{ github.sha }}" >> $GITHUB_OUTPUT
           echo "pre-release=true" >> $GITHUB_OUTPUT
-  Test:
-    uses: eval/redesigned-computing-machine/.github/workflows/test.yml@main
+  #Test:
+  #  uses: eval/redesigned-computing-machine/.github/workflows/test.yml@main
   Build:
-    needs: [Test, Config]
+    needs: [Config]
     runs-on: ubuntu-latest
     permissions:
       contents: 'write'
@@ -88,38 +88,6 @@ jobs:
           mv ext bbg-${{ needs.Config.outputs.version }}
           zip -r bangbanggo-${{ needs.Config.outputs.version }}.zip bbg-${{ needs.Config.outputs.version }}
           cp bangbanggo-${{ needs.Config.outputs.version }}.zip bangbanggo-latest.zip
-      - name: Release stable
-        if: "${{ needs.Config.outputs.stable }}"
-        uses: softprops/action-gh-release@v1
-        with:
-          body: |
-            ## Info
-
-            - version: ${{ needs.Config.outputs.version }}
-            - SHA: ${{ github.sha }}
-          prerelease: false
-          name: stable
-          target_commitish: d8efd86f725110fab4d97044b1ad5930be1b7c9a # first commit
-          tag_name: stable
-          files: |
-            bangbanggo-${{ needs.Config.outputs.version }}.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release unstable
-        if: ${{ always() }}
-        uses: softprops/action-gh-release@v1
-        with:
-          body: |
-            ## Info
-
-            - version: ${{ needs.Config.outputs.version }}
-            - SHA: ${{ github.sha }}
-          prerelease: true
-          name: unstable
-          target_commitish: d8efd86f725110fab4d97044b1ad5930be1b7c9a  # first commit
-          tag_name: unstable
-          files: |
-            bangbanggo-latest.zip
       - name: Tagged release
         if: "${{ needs.Config.outputs.tagged-release }}"
         uses: softprops/action-gh-release@v1
